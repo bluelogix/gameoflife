@@ -1,0 +1,29 @@
+
+    
+  .box {
+    display: inline-block;       
+    border: 1px solid black;
+    width: 15px;
+    height: 15px;
+    margin-left: -1px;
+    margin-bottom: -1px;
+    }
+  
+  .dead {
+    background-color: rgb(170, 85, 85);
+  }
+  
+  .alive {
+    background-color: rgb(255, 241, 111);
+  }
+    
+  .box:hover { 
+    background: rgb(255, 241, 111);
+  }
+  
+  .grid {
+    line-height: 0;
+    margin: auto;
+    margin-top: 20px;
+  }
+    

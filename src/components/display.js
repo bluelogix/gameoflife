@@ -12,7 +12,6 @@ class Display extends React.Component {
 
         this.state = {
             generation: 0,
-            //creating a arrays for rows and columns
             gridFull: Array(this.rows).fill().map(() => Array(this.cols).fill(false))
         }
     }
@@ -31,18 +30,56 @@ class Display extends React.Component {
             generation: 0
         })
     }
-
+    //Algo
     startGrid = () => {
+        let g = this.state.gridFull;
+        let g2 = arrClone(this.state.gridFull);
 
+        for(let i = 0; i < this.rows; i++){
+            for(let j = 0; j < this.cols; j++) {
+            let count = 0;
+            if(i > 0) if(g[i - 1][j]) count++;
+            if(i > 0 && j > 0) if (g[i - 1][j - 1]) count++;
+            if(i > 0 && j < this.cols - 1) if (g[i - 1][j + 1]) count++;
+            if(j < this.cols - 1) if (g[i][j + 1]) count++;
+            if(j > 0) if (g[i][j - 1]) count++;
+            if (i < this.rows - 1) if (g[i + 1][j]) count++;
+		    if (i < this.rows - 1 && j > 0) if (g[i + 1][j - 1]) count++;
+		    if (i < this.rows - 1 && j < this.cols - 1) if (g[i + 1][j + 1]) count++;
+		    if (g[i][j] && (count < 2 || count > 3)) g2[i][j] = false;
+		    if (!g[i][j] && count === 3) g2[i][j] = true;
+            }
+        }
+        this.setState({
+            gridFull: g2,
+            generation: this.state.generation + 1
+        });
+    }
+    componentDidMount() {
+        this.startButton();
     }
     startButton= () => {
-        
+        clearInterval(this.intervalId);
+        this.intervalId = setInterval(this.startGrid);
     }
     stopButton= () => {
-        
+        clearInterval(this.intervalId);
     }
-    gridSize= () => {
-        
+    gridSize= (size) => {
+        switch (size) {
+            case "1":
+                this.cols = 15;
+                this.rows = 15;
+            break;
+            case "2":
+                this.cols = 45;
+                this.rows = 45;
+            break;
+            default:
+                this.cols = 30;
+                this.rows = 30;
+        }
+        this.clearBox();
     }
 
 
@@ -57,8 +94,17 @@ class Display extends React.Component {
                 <li>Any live cell with more than three live neighbors dies</li>
                 <li>Any dead cell with three live neighbors becomes a live cell</li>                
                 </ul>
-                <Buttons startButton={this.startButton} stopButton={this.stopButton} gridSize={this.gridSize} clearBox={this.clearBox} />
-                <Grid gridFull={this.state.gridFull} rows={this.rows} cols={this.cols} selectBox={this.selectBox}/>
+                <Buttons
+                 startButton={this.startButton}
+                 stopButton={this.stopButton} 
+                 gridSize={this.gridSize} 
+                 clearBox={this.clearBox} 
+                 />
+                <Grid 
+                gridFull={this.state.gridFull} 
+                rows={this.rows} cols={this.cols} 
+                selectBox={this.selectBox}
+                />
                 <h2>Generation: {this.state.generation} </h2>
             </div>
         )

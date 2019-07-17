@@ -15,19 +15,17 @@ class Buttons extends React.Component {
                 <button onClick={this.props.stopButton}>Stop</button>
                 <button onClick={this.props.clearBox}>Clear</button>
                 <button onClick={this.props.randomButton}>Randomize</button>
-               
-                    
-                    <button onClick={this.props.fastSpeed}>Fast</button>
-                    <button onClick={this.props.slowSpeed}>Slow</button>
+                <button onClick={this.props.fastSpeed}>Fast</button>
+                <button onClick={this.props.slowSpeed}>Slow</button>
                 
-                {/* <select onSelect={this.handleSelect}>
+               {/* <select onSelect={this.handleSelect}>
                     <option>Grid Size</option>
-                    <option className="1">15x15</option>
-                    <option className="2">30x30</option>
-                    <option className="3">45x45</option>
-                </select> */}
+                    <option e="1">15x15</option>
+                    <option e="2">30x30</option>
+                    <option e="3">45x45</option>
+                </select>  */}
                 {/* <form onSelect={this.handleSelect}>
-                    <input>1</input>
+                    <input className="1" value="sonething" />
                 </form> */}
             </div>
         )

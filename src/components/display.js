@@ -7,6 +7,7 @@ import './display.css';
 class Display extends React.Component {
     constructor() {
         super();
+        this.speed = 100;
         this.rows = 30;
         this.cols = 30;
 
@@ -55,16 +56,39 @@ class Display extends React.Component {
             generation: this.state.generation + 1
         });
     }
-    componentDidMount() {
-        this.startButton();
-    }
     startButton= () => {
         clearInterval(this.intervalId);
-        this.intervalId = setInterval(this.startGrid);
+        this.intervalId = setInterval(this.startGrid, this.speed);
     }
-    stopButton= () => {
+    stopButton = () => {
         clearInterval(this.intervalId);
     }
+    randomButton = () => {
+        let gridCopy = arrClone(this.state.gridFull);
+        for(let i = 0; i < this.rows; i++) {
+            for(let j = 0; j < this.cols; j++) {
+                if(Math.floor(Math.random() * 4) === 1) {
+                    gridCopy[i][j] = true;
+                }
+            }
+        }
+        this.setState({
+            gridFull: gridCopy
+        })
+    }
+    slowSpeed = () => {
+        this.speed = 1000;
+        this.startButton();
+    }
+    fastSpeed = () => {
+        this.speed = 100;
+        this.startButton();
+    }
+    componentDidMount() {
+        this.randomButton();
+        this.startButton();
+    }
+
     gridSize= (size) => {
         switch (size) {
             case "1":
@@ -88,17 +112,20 @@ class Display extends React.Component {
             <div>
                 <h1>Conway's Game Of Life</h1>
                 <ul>
-                <h2>Rules:</h2>
-                <li>Any live cell with fewer than two live neighbors dies.</li>
-                <li>Any live cell with two or three live neighbors lives on to the next generation</li>
-                <li>Any live cell with more than three live neighbors dies</li>
-                <li>Any dead cell with three live neighbors becomes a live cell</li>                
+                    <h2>Rules:</h2>
+                    <li>Any live cell with fewer than two live neighbors dies.</li>
+                    <li>Any live cell with two or three live neighbors lives on to the next generation</li>
+                    <li>Any live cell with more than three live neighbors dies</li>
+                    <li>Any dead cell with three live neighbors becomes a live cell</li>                
                 </ul>
                 <Buttons
                  startButton={this.startButton}
                  stopButton={this.stopButton} 
                  gridSize={this.gridSize} 
-                 clearBox={this.clearBox} 
+                 clearBox={this.clearBox}
+                 randomButton={this.randomButton}
+                 slowSpeed={this.slowSpeed}
+                 fastSpeed={this.fastSpeed}
                  />
                 <Grid 
                 gridFull={this.state.gridFull} 

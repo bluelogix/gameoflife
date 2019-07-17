@@ -1,8 +1,11 @@
-
+body {
+    background-image: linear-gradient(rgb(214, 214, 214), white);
+    background-repeat: no-repeat; 
+}
 ul {
     list-style-position: inside;
 }
-  .box {
+.box {
     display: inline-block;       
     border: 1px solid black;
     width: 15px;
@@ -10,9 +13,20 @@ ul {
     margin-left: -1px;
     margin-bottom: -1px;
     }
-  
+  .buttons button {
+      font-size: 20px;
+      margin: 0 10px;
+      padding: 5px;
+      border: 2px solid black;
+  }
+  .buttons button:focus {
+      outline:0;
+  }
+  .buttons button:hover {
+    background-color:  rgb(255, 241, 111);
+  }
   .dead {
-    background-color: rgb(170, 85, 85);
+    background-color: rgba(24, 187, 187, 0.794);
   }
   
   .alive {

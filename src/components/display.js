@@ -76,6 +76,19 @@ class Display extends React.Component {
             gridFull: gridCopy
         })
     }
+    presetButton = () => {
+        let gridCopy = arrClone(this.state.gridFull);
+        for(let i = 0; i < this.rows; i++) {
+            for(let j = 0; j < this.cols; j++) {
+                if(Math.ceil(Math.random() * 20) === 4) {
+                    gridCopy[i][j] = true;
+                }
+            }
+        }
+        this.setState({
+            gridFull: gridCopy
+        })
+    }
     slowSpeed = () => {
         this.speed = 1000;
         this.startButton();
@@ -85,26 +98,25 @@ class Display extends React.Component {
         this.startButton();
     }
     componentDidMount() {
-        this.randomButton();
         this.startButton();
     }
+    // gridSize= (size) => {
+    //     switch (size) {
+    //         case "1":
+    //             this.cols = 15;
+    //             this.rows = 15;
+    //         break;
+    //         case "2":
+    //             this.cols = 45;
+    //             this.rows = 45;
+    //         break;
+    //         default:
+    //             this.cols = 30;
+    //             this.rows = 30;
+    //     }
+    //     this.clearBox();
+    // }
 
-    gridSize= (size) => {
-        switch (size) {
-            case "1":
-                this.cols = 15;
-                this.rows = 15;
-            break;
-            case "2":
-                this.cols = 45;
-                this.rows = 45;
-            break;
-            default:
-                this.cols = 30;
-                this.rows = 30;
-        }
-        this.clearBox();
-    }
 
 
     render() {
@@ -126,10 +138,12 @@ class Display extends React.Component {
                  randomButton={this.randomButton}
                  slowSpeed={this.slowSpeed}
                  fastSpeed={this.fastSpeed}
+                 presetButton={this.presetButton}
                  />
                 <Grid 
                 gridFull={this.state.gridFull} 
-                rows={this.rows} cols={this.cols} 
+                rows={this.rows}
+                cols={this.cols} 
                 selectBox={this.selectBox}
                 />
                 <h2>Generation: {this.state.generation} </h2>

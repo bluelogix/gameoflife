@@ -17,6 +17,8 @@ class Buttons extends React.Component {
                 <button onClick={this.props.randomButton}>Randomize</button>
                 <button onClick={this.props.fastSpeed}>Fast</button>
                 <button onClick={this.props.slowSpeed}>Slow</button>
+                <button onClick={this.props.presetButton}>Preset</button>
+                
                 
                {/* <select onSelect={this.handleSelect}>
                     <option>Grid Size</option>

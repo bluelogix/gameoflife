@@ -24,6 +24,7 @@ class Display extends React.Component {
             gridFull: gridCopy
         })
     }
+
     clearBox = () => {
         const clearGrid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
         this.setState({
@@ -31,7 +32,7 @@ class Display extends React.Component {
             generation: 0
         })
     }
-    //Algo
+ 
     startGrid = () => {
         let g = this.state.gridFull;
         let g2 = arrClone(this.state.gridFull);
@@ -53,16 +54,28 @@ class Display extends React.Component {
         }
         this.setState({
             gridFull: g2,
-            generation: this.state.generation + 1
+            generation: this.state.generation +1
         });
     }
+    // addGeneration = () => {
+    //     let grids = arrClone(this.state.gridFull);
+    //    if(grids){
+    //         this.setState({
+    //         generation: this.state.generation +1
+
+    //         })
+    //    }
+    // }
+
     startButton= () => {
         clearInterval(this.intervalId);
         this.intervalId = setInterval(this.startGrid, this.speed);
     }
+
     stopButton = () => {
         clearInterval(this.intervalId);
     }
+
     randomButton = () => {
         let gridCopy = arrClone(this.state.gridFull);
         for(let i = 0; i < this.rows; i++) {
@@ -76,29 +89,20 @@ class Display extends React.Component {
             gridFull: gridCopy
         })
     }
-    presetButton = () => {
-        let gridCopy = arrClone(this.state.gridFull);
-        for(let i = 0; i < this.rows; i++) {
-            for(let j = 0; j < this.cols; j++) {
-                if(Math.ceil(Math.random() * 20) === 4) {
-                    gridCopy[i][j] = true;
-                }
-            }
-        }
-        this.setState({
-            gridFull: gridCopy
-        })
-    }
+
     slowSpeed = () => {
         this.speed = 1000;
         this.startButton();
     }
+
     fastSpeed = () => {
         this.speed = 100;
         this.startButton();
     }
+
     componentDidMount() {
         this.startButton();
+        this.randomButton();
     }
 
     gridSize= (size) => {
@@ -118,9 +122,6 @@ class Display extends React.Component {
         this.clearBox();
     }
 
-
-
-
     render() {
         return (
             <div>
@@ -133,7 +134,6 @@ class Display extends React.Component {
                  randomButton={this.randomButton}
                  slowSpeed={this.slowSpeed}
                  fastSpeed={this.fastSpeed}
-                 presetButton={this.presetButton}
                  />
                 <Grid 
                 gridFull={this.state.gridFull} 
@@ -141,7 +141,7 @@ class Display extends React.Component {
                 cols={this.cols} 
                 selectBox={this.selectBox}
                 />
-                <h2>Generation: {this.state.generation} </h2>
+                <h2 className="gen">Generation: {this.state.generation} </h2>
             </div>
         )
     }    
@@ -150,4 +150,5 @@ class Display extends React.Component {
 function arrClone(arr) {
     return JSON.parse(JSON.stringify(arr));
 }
+
 export default Display;

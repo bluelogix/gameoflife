@@ -1,5 +1,6 @@
 import React from 'react';
 import './display.css';
+import {NavLink } from 'react-router-dom';
 
 function Home() {
     return (
@@ -13,15 +14,16 @@ function Home() {
          </div>
                
             <div className="about">
-            <ul>
             <h1>Rules</h1>
+            <ul>
                 <li>Any live cell with fewer than two live neighbors dies</li>
                 <li>Any live cell with more than three live neighbors dies</li>
                 <li>Any dead cell with three live neighbors becomes a live cell</li> 
                 <li>Any live cell with two or three live neighbors lives on to the next generation</li>        
-                </ul>
+            </ul>
                 </div>
-
+            <NavLink style={{ fontSize: '20px',color: 'rgba(24, 187, 187, 0.794)', textDecoration: 'none',  margin:'auto'}} to='/display' color="inherit">Play Here</NavLink>
+            
           </div>
          
       </div>

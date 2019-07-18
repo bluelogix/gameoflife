@@ -143,4 +143,5 @@ class Display extends React.Component {
 function arrClone(arr) {
     return JSON.parse(JSON.stringify(arr));
 }
+
 export default Display;

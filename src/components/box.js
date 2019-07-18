@@ -4,6 +4,8 @@ import './display.css';
 
 class Box extends React.Component {
 
+  
+
 selectBox = () => {
     this.props.selectBox(this.props.rows, this.props.cols)
 }

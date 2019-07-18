@@ -5,8 +5,9 @@ import './display.css';
 
 class Grid extends React.Component {
 
+   
     render() {
-        const width = this.props.cols * 16;
+        const width = this.props.cols * 14;
         const rowsArr = [];
         // const boxClass = "";
         for(let i = 0; i < this.props.rows; i++) {
@@ -15,6 +16,7 @@ class Grid extends React.Component {
                 let boxClass = this.props.gridFull[i][j] ? "box alive" : "box dead";
                 rowsArr.push(
                     <Box 
+                    
                     boxClass={boxClass}
                     key={boxId}
                     boxId={boxId}

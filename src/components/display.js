@@ -17,7 +17,6 @@ class Display extends React.Component {
         }
     }
     //Methods
-    
     selectBox = (rows, cols) => {
         let gridCopy = arrClone(this.state.gridFull);
         gridCopy[rows][cols] = !gridCopy[rows][cols];

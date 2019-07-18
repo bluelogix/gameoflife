@@ -115,9 +115,6 @@ class Display extends React.Component {
         this.clearBox();
     }
 
-
-
-
     render() {
         return (
             <div>

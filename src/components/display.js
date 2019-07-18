@@ -17,6 +17,7 @@ class Display extends React.Component {
         }
     }
     //Methods
+    
     selectBox = (rows, cols) => {
         let gridCopy = arrClone(this.state.gridFull);
         gridCopy[rows][cols] = !gridCopy[rows][cols];
@@ -24,6 +25,7 @@ class Display extends React.Component {
             gridFull: gridCopy
         })
     }
+
     clearBox = () => {
         const clearGrid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
         this.setState({
@@ -31,7 +33,7 @@ class Display extends React.Component {
             generation: 0
         })
     }
-    //Algo
+ 
     startGrid = () => {
         let g = this.state.gridFull;
         let g2 = arrClone(this.state.gridFull);
@@ -53,16 +55,22 @@ class Display extends React.Component {
         }
         this.setState({
             gridFull: g2,
-            generation: this.state.generation + 1
+            generation: this.state.generation +1
         });
     }
+    // addGeneration = () => {
+       
+    // }
+
     startButton= () => {
         clearInterval(this.intervalId);
         this.intervalId = setInterval(this.startGrid, this.speed);
     }
+
     stopButton = () => {
         clearInterval(this.intervalId);
     }
+
     randomButton = () => {
         let gridCopy = arrClone(this.state.gridFull);
         for(let i = 0; i < this.rows; i++) {
@@ -76,27 +84,17 @@ class Display extends React.Component {
             gridFull: gridCopy
         })
     }
-    presetButton = () => {
-        let gridCopy = arrClone(this.state.gridFull);
-        for(let i = 0; i < this.rows; i++) {
-            for(let j = 0; j < this.cols; j++) {
-                if(Math.ceil(Math.random() * 20) === 4) {
-                    gridCopy[i][j] = true;
-                }
-            }
-        }
-        this.setState({
-            gridFull: gridCopy
-        })
-    }
+
     slowSpeed = () => {
         this.speed = 1000;
         this.startButton();
     }
+
     fastSpeed = () => {
         this.speed = 100;
         this.startButton();
     }
+
     componentDidMount() {
         this.startButton();
     }
@@ -133,7 +131,6 @@ class Display extends React.Component {
                  randomButton={this.randomButton}
                  slowSpeed={this.slowSpeed}
                  fastSpeed={this.fastSpeed}
-                 presetButton={this.presetButton}
                  />
                 <Grid 
                 gridFull={this.state.gridFull} 

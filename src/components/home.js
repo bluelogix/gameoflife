@@ -13,15 +13,14 @@ function Home() {
          </div>
                
             <div className="about">
-            <ul>
             <h1>Rules</h1>
+            <ul>
                 <li>Any live cell with fewer than two live neighbors dies</li>
                 <li>Any live cell with more than three live neighbors dies</li>
                 <li>Any dead cell with three live neighbors becomes a live cell</li> 
                 <li>Any live cell with two or three live neighbors lives on to the next generation</li>        
-                </ul>
+            </ul>
                 </div>
-
           </div>
          
       </div>

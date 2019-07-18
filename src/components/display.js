@@ -58,7 +58,13 @@ class Display extends React.Component {
         });
     }
     // addGeneration = () => {
-       
+    //     let grids = arrClone(this.state.gridFull);
+    //    if(grids){
+    //         this.setState({
+    //         generation: this.state.generation +1
+
+    //         })
+    //    }
     // }
 
     startButton= () => {
@@ -96,6 +102,7 @@ class Display extends React.Component {
 
     componentDidMount() {
         this.startButton();
+        this.randomButton();
     }
 
     gridSize= (size) => {
@@ -134,7 +141,7 @@ class Display extends React.Component {
                 cols={this.cols} 
                 selectBox={this.selectBox}
                 />
-                <h2>Generation: {this.state.generation} </h2>
+                <h2 className="gen">Generation: {this.state.generation} </h2>
             </div>
         )
     }    
